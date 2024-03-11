@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Timer
 
 
-    const deadline = '2024-02-28';
+    const deadline = '2024-12-28';
 
 
 
@@ -108,21 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.querySelector('.modal')
     const modalCloseBtn = document.querySelector('[data-close]')
 
+    function openModal() {
+        modal.style.display = 'block'
+        document.body.style.overflow = 'hidden'
+        clearInterval(modalTimerId)
+    }
+
     modalTrigger.forEach(item => {
-        item.addEventListener('click', () => {
-            modal.style.display = 'block'
-            document.body.style.overflow = 'hidden'
-        })
+        item.addEventListener('click', openModal)
     })
 
     function closeModal() {
         modal.style.display = 'none'
         document.body.style.overflow = ''
     }
+
     modalCloseBtn.addEventListener('click', closeModal)
 
     modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
+        if (event.target == modal) {
             closeModal()
         }
     })
@@ -132,5 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal()
         }
     })
+
+    const modalTimerId = setTimeout(openModal, 15000)
+
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+            openModal()
+            window.removeEventListener('scroll', showModalByScroll)
+        }
+    }
+
+    window.addEventListener('scroll', showModalByScroll)
 })
 
