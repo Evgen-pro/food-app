@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Evgen-pro/food-app/issues"
   },
-  "homepage": "https://github.com/Evgen-pro/food-app#readme"
+  "homepage": "https://github.com/Evgen-pro/food-app#readme",
+  "devDependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
 }
