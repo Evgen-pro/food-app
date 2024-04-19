@@ -200,11 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return await res.json()
         }
 
-    getResource('http://localhost:3000/menu')
+    // getResource('http://localhost:3000/menu')
+    //     .then(data => {
+    //         data.forEach(({img, alt, title, descr, price})=> {
+    //             new MenuCard(img, alt, title, descr, price, '.menu .container').render()
+    //         })
+    //     })
+
+    axios.get('http://localhost:3000/menu')
         .then(data => {
-            data.forEach(({img, alt, title, descr, price})=> {
+            data.data.forEach(({img, alt, title, descr, price})=> {
                 new MenuCard(img, alt, title, descr, price, '.menu .container').render()
-            })
+        })
         })
 
     // new MenuCard(
